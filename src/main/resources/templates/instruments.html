@@ -11,22 +11,22 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-around">
-        <h1 class="navbar-brand">Gestão de Músicos</h1>
-        <a th:href="@{/instrument/}" class="btn btn-success">Instrument</a>
+        <h1 class="navbar-brand">Gestão de Instrumentos</h1>
+        <a th:href="@{/musician/}" class="btn btn-success">Musician</a>
         <a th:href="@{/band/}" class="btn btn-success">Band</a>
     </nav>
     <main>
 
         <div class="container">
             <div class="row">
-                <h2 class="mt-3">Management Musicians</h2>
+                <h2 class="mt-3">Management Instruments</h2>
             </div>
 
             <div class="row">
                 <div class="mt-2 mb-2">
-                    <a th:href="@{/musician/registerMusician}" class="btn btn-success">
+                    <a th:href="@{/instrument/registerInstrument}" class="btn btn-success">
                         <i class="fas fa-user-plus"></i>
-                        Adicionar Músico
+                        Adicionar Instrumento
                     </a>
                 </div>
             </div>
@@ -37,15 +37,15 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Role</th>
+                            <th scope="col">Brand</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="musician: ${musicians}">
-                            <th th:text="${musician.id}" scope="row"></th>
-                            <th th:text="${musician.name}" scope="row"></th>
-                            <th th:text="${musician.role}" scope="row"></th>
+                        <tr th:each="instrument: ${instruments}">
+                            <th th:text="${instrument.id}" scope="row"></th>
+                            <th th:text="${instrument.instrumentName}" scope="row"></th>
+                            <th th:text="${instrument.brand}" scope="row"></th>
                             <th>
                                 <!-- -------------------------------- -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -56,28 +56,30 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Musician</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Instrument</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form th:action="@{/musician/update/{id} (id=${musician.id})}"
-                                                    th:object="${musician}" method="post">
+                                                <form th:action="@{/instrument/update/{id} (id=${instrument.id})}"
+                                                    th:object="${instrument}" method="post">
                                                     <div class="mb-3">
-                                                        <label for="recipient-name" class="col-form-label">Name:</label>
-                                                        <input type="text" class="form-control" id="*{name}"
-                                                            name="name">
+                                                        <label for="recipient-name" class="col-form-label">Instrument
+                                                            Name:</label>
+                                                        <input type="text" class="form-control" id="*{instrumentName}"
+                                                            name="instrumentName">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="recipient-name" class="col-form-label">Role:</label>
-                                                        <input type="text" class="form-control" id="*{role}"
-                                                            name="role">
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Brand:</label>
+                                                        <input type="text" class="form-control" id="*{brand}"
+                                                            name="brand">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary"
-                                                            th:href="@{/musician/update/{id} (id=${musician.id})}">Confirm</button>
+                                                            th:href="@{/instrument/update/{id} (id=${instrument.id})}">Confirm</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -85,7 +87,7 @@
                                     </div>
                                 </div>
                                 <!-- -------------------------------- -->
-                                <a class="btn btn-danger" th:href="@{/musician/remove/{id} (id=${musician.id})}">
+                                <a class="btn btn-danger" th:href="@{/instrument/remove/{id} (id=${instrument.id})}">
                                     Excluir
                                 </a>
                             </th>
